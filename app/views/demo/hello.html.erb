@@ -1,0 +1,18 @@
+<h1>Demo#hello</h1>
+<p>Hello World!</p>
+
+ID: <%=@id%>
+Next page: <%=@page + 1%>
+
+<%target = "world" %> </br>
+<%= "Hello " + target + "!"%> </br>
+
+<%=link_to("Index",{:controller => 'demo', :action => 'index'})%>
+
+<%@array.each do |n|%>
+<%=n%><br>
+<%end%>
+
+<hr/>
+
+<%=params.inspect%>
