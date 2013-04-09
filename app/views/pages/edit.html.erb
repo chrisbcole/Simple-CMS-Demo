@@ -1,6 +1,6 @@
 <%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link')%>
 
-<div class="page_edit">
+<div class="page edit">
 	<h2>Update Page</h2>
 	
 	<%=form_for(:page, :url => {:action => 'update', :id => @page.id}) do |f|%>
