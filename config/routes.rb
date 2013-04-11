@@ -1,4 +1,10 @@
 SimpleCms::Application.routes.draw do
+  get "access/menu"
+
+  get "access/login"
+
+  match 'admin', :to => 'access#menu'
+
   # resources :demo
 
   # The priority is based upon order of creation:
