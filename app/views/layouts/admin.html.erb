@@ -16,6 +16,7 @@
 			<%=flash[:notice]%>
 		</div>
 		<%end%>
+		<%= link_to("<< Back to Public", {:controller => 'public', :action => 'index'}, :class => 'back-link')%> <br>
 		<%=yield%>
 	</div>
 	<div id="footer">

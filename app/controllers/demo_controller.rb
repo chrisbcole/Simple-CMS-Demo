@@ -27,4 +27,21 @@ class DemoController < ApplicationController
     
   end
 
+  def make_error
+    render(:text => 'test') # syntax error
+    # render(:text => @something.upcase) # undefined method on nil
+    # render(:text => "1" + 1) # can't convert type
+  end
+
+  def logging
+    @subjects = Subject.all
+    ActiveSupport::Deprecation.warn("This is a deprecation")
+    logger.debug("this is debug")
+    logger.info("this is info")
+    logger.warn("this is warn")
+    logger.error("this is error")
+    logger.fatal("this is fatal")
+    render(:text => "Logged!")
+  end
+
 end

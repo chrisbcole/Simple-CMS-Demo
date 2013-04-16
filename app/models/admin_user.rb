@@ -1,11 +1,13 @@
 require 'digest/sha1'
 class AdminUser < ActiveRecord::Base
-	attr_accessible :first_name, :last_name, :email, :username
+	attr_accessible :first_name, :last_name, :email, :username, :password, :password_confirmation
 	has_and_belongs_to_many :pages
 	has_many :section_edits
 	has_many :sections, :through => :section_edits
 
 	attr_accessor :password
+	validates_presence_of :password, :on => :create
+	validates_confirmation_of :password, :message => "should match password confirmation"
 	validates_length_of :password, :within => 8..25, :on => :create
 
 	EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
@@ -32,6 +34,11 @@ class AdminUser < ActiveRecord::Base
 	after_save :clear_password
 
 	scope :named, lambda {|first,last| where(:first_name => first, :last_name => last)}
+	scope :sorted, order('admin_users.last_name ASC, admin_users.first_name ASC')
+
+	def name
+		"#{first_name} #{last_name}"
+	end
 
 	def self.make_salt (username="")
 		Digest::SHA1.hexdigest("Use #{username} with #{Time.now} to make salt")

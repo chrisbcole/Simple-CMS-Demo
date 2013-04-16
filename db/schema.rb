@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409043528) do
+ActiveRecord::Schema.define(:version => 20130416214307) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "first_name",      :limit => 25
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20130409043528) do
   create_table "sections", :force => true do |t|
     t.integer  "page_id"
     t.string   "name"
-    t.string   "position"
+    t.integer  "position"
     t.boolean  "visible",      :default => false
     t.string   "content_type"
     t.text     "content"
